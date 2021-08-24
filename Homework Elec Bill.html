@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Elecriciy Bill</title>
+    <script type="text/javascript">
+        function doBill() {
+            var initialunits = parseFloat(document.getElementById("Units").value);
+            var cbAc = document.getElementById("AirConditioner");
+            var cbFan = document.getElementById("Fan");
+            var cbCooler = document.getElementById("Cooler");
+            var Acunits = parseFloat(document.getElementById("Actxt").value);
+            var Fanunits = parseFloat(document.getElementById("Fantxt").value);
+            var Coolerunits = parseFloat(document.getElementById("Coolertxt").value);
+            var Acbill;
+            var Fanbill;
+            var Coolerbill;
+            var Unitsbill;
+            Totalbill=0;;
+            
+                Unitsbill = initialunits * 5;
+                Totalbill = Unitsbill;
+                if (cbAc.checked == true) {
+                    Acbill = Acunits * 100;
+                    Totalbill = Totalbill + parseFloat(Acbill);
+                } else {
+                    Acbill = 0;
+                }
+                if (cbFan.checked == true) {
+                    Fanbill = Fanunits * 50;
+                    Totalbill = Totalbill + parseFloat(Fanbill);
+                } else {
+                    Fanbill = 0;
+                }
+                if (cbCooler.checked == true) {
+                    Coolerbill = Coolerunits * 80;
+                    Totalbill = Totalbill + parseFloat(Coolerbill);
+                } else {
+                    Coolerbill = 0;
+                }
+
+
+               /* if (radCommercial.checked) {
+                    Totalbill = Totalbill - ((Totalbill * 10) / 100);
+                }
+                if (radResidential.checked) {
+                    Totalbill = Totalbill - ((Totalbill * 20) / 100);*/
+                
+                document.getElementById("AcBill").value = Acbill;
+                document.getElementById("FanBill").value = Fanbill;
+                document.getElementById("CoolerBill").value = Coolerbill;
+                document.getElementById("UnitsBill").value = Unitsbill;
+                document.getElementById("TotalBill").value = Totalbill;
+            } 
+        function doDiscount()
+        {
+             discount;
+            var radCommercial = document.getElementById("Commercial");
+            var radResidential = document.getElementById("Residential");
+            if(radCommercial.checked)
+                {
+                    discount=Totalbill/10;
+                }
+            if(radResidential.checked)
+                {
+                    discount=Totalbill/5;
+                }
+            
+            document.getElementById("discount").value=discount;
+        }
+        function doNett()
+        {
+            var nett;
+            nett=Totalbill-discount;
+            document.getElementById("NetBill").value=nett;
+        }
+    </script>
+</head>
+
+<body>
+    <center>
+        <table border="1" rules="all" cellpadding="10">
+            <tr>
+                <td align="center">
+                    <h1>
+                        ELECTRICITY BILL
+                    </h1>
+                </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <input type="text" placeholder="Units Consumed" id="Units">
+                </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <br>
+                    Appliances:
+                    <br>
+                    <input type="checkbox" id="AirConditioner"> AC
+                    <input type="checkbox" id="Fan"> FAN
+                    <input type="checkbox" id="Cooler"> COOLER
+                </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <input type="text" id="Actxt" placeholder="AC">
+                    <input type="text" id="Fantxt" placeholder="FAN">
+                    <input type="text" id="Coolertxt" placeholder="COOLER">
+                </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <input type="radio" id="Commercial" name="rad"> COMMERCIAL
+                    <input type="radio" id="Residential" name="rad"> RESIDENTIAL
+                </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <input type="button" value="BILL" onclick="doBill()">
+                    <input type="button" value="DISCOUNT" onclick="doDiscount()">
+                    <input type="button" value="NET-BILL" onclick="doNett()">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    AC BILL
+                    <input type="text" id="AcBill">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    FAN BILL
+                    <input type="text" id="FanBill">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    COOLER BILL
+                    <input type="text" id="CoolerBill">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    UNITS BILL
+                    <input type="text" id="UnitsBill">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    TOTAL BILL
+                    <input type="text" id="TotalBill">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    DISCOUNT
+                    <input type="text" id="discount">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    NET BILL
+                    <input type="text" id="NetBill">
+                </td>
+            </tr>
+        </table>
+    </center>
+</body></html>
